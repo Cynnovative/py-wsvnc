@@ -257,6 +257,12 @@ If you have a feature request or bug please use the Github issues page and make 
 
 `py-wsvnc` is covered by the [MIT license](LICENSE).
 
+## Acknowledgements
+
+This research was developed with funding from the Defense Advanced Research Projects Agency (DARPA). The views, opinions and/or findings expressed are those of the author and should not be interpreted as representing the official views or policies of the Department of Defense or the U.S. Government.  
+
+Distribution Statement A – Approved for Public Release, Distribution Unlimited
+
 ## Limitations
 
 - The client does not currently support `VMWares TightDiff Comp` encoding as used in their WebMKS. That is currently a WIP, do not use

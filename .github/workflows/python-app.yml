@@ -1,0 +1,46 @@
+name: linting & tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: run linting
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          ruff check src
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          mypy src
+          # check for formatting
+          ruff format --check src
+      - name: run tests
+        run: |
+          coverage run -p --source=src -m pytest
+          coverage run -p --source=src -m pytest tests/mock_server_tests
+          coverage combine
+          coverage report
+          coverage xml -o coverage.xml
+
+      - name: upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.xml

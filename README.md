@@ -23,7 +23,13 @@ The project requires these python packages: `websockets~=12.0`, `pillow~=10.4.0`
 
 ## Installation
 
-Clone the repository and `pip` install:
+Best method:
+
+```bash
+pip install py-wsvnc
+```
+
+Alternatively you can clone the repository and `pip` install:
 
 ```bash
 git clone https://github.com/Cynnovative/py-wsvnc

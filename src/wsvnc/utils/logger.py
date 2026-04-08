@@ -1,7 +1,6 @@
 """Basic logger."""
 
 import logging
-import os
 
 
 def get_logger(name: str) -> logging.Logger:
@@ -18,8 +17,6 @@ def get_logger(name: str) -> logging.Logger:
         A logger
     """
     logger = logging.getLogger(name)
-    logging.basicConfig(
-        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
-        level=os.environ.get("LOGLEVEL", "INFO"),
-    )
+    if not logger.handlers:
+        logger.addHandler(logging.NullHandler())
     return logger
